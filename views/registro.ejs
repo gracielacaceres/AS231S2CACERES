@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro de Estudiantes</title>
+    <link rel="stylesheet" href="../public/style.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Registro de Estudiantes</h2>
+        <form action="procesar_registro.php" method="post" class="registration-form">
+            <label for="carrera">Carrera:</label>
+            <select name="carrera" id="carrera">
+                <option value="analisis_sistemas">Análisis de Sistemas</option>
+                <option value="produccion_agraria">Producción Agraria</option>
+            </select>
+
+            <label for="nombres">Nombres y Apellidos:</label>
+            <input type="text" name="nombres" required>
+
+            <label for="dni">Número de DNI:</label>
+            <input type="text" name="dni" required>
+
+            <label for="fecha_nacimiento">Fecha de Nacimiento:</label>
+            <input type="date" name="fecha_nacimiento" required>
+
+            <label for="correo">Correo Institucional:</label>
+            <input type="email" name="correo" required>
+
+            <label for="contrasena">Contraseña:</label>
+            <input type="password" name="contrasena" required>
+
+            <div class="terms">
+                <input type="checkbox" name="terminos" required>
+                <label for="terminos">Aceptar los Términos y Condiciones</label>
+            </div>
+
+            <button type="submit">Registrarse</button>
+        </form>
+    </div>
+</body>
+</html>
+
+
+    <script>
+        function validarRegistro() {
+            var carrera = document.getElementById('carrera').value;
+            var nombres = document.getElementById('nombres').value;
+            var apellidos = document.getElementById('apellidos').value;
+            var dni = document.getElementById('dni').value;
+            var fechaNacimiento = document.getElementById('fecha_nacimiento').value;
+            var correoInstitucional = document.getElementById('correo_institucional').value;
+            var contrasena = document.getElementById('contrasena').value;
+            var terminosCondiciones = document.getElementById('terminos_condiciones').checked;
+
+            if (!carrera || !nombres || !apellidos || !dni || !fechaNacimiento || !correoInstitucional || !contrasena || !terminosCondiciones) {
+                alert('Todos los campos deben estar completos.');
+                return false;
+            }
+
+            if (!correoInstitucional.endsWith('@vallegrande.edu.pe')) {
+                alert('El correo institucional debe terminar con @vallegrande.edu.pe');
+                return false;
+            }
+
+            if (dni.length !== 8 || isNaN(dni)) {
+                alert('El número de DNI debe tener 8 dígitos.');
+                return false;
+            }
+
+            alert('¡Registro exitoso!');
+
+            return true;
+        }
+    </script>
+
+</body>
+
+</html>
